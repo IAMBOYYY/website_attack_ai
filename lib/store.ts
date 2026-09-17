@@ -63,19 +63,21 @@ export const useStore = create<State>()(
       rightTab: 'agents',
 
       setKey: (providerId, patch) =>
-        set((s) => ({
-          keys: {
-            ...s.keys,
-            [providerId]: {
-              apiKey: '',
-              models: [],
-              status: 'idle' as const,
-              ...s.keys[providerId],
-              ...patch,
-              providerId,
-            },
-          },
-        })),
+        set((s) => {
+          const prev = s.keys[providerId];
+          const next: ProviderKey = {
+            providerId,
+            apiKey: patch.apiKey ?? prev?.apiKey ?? '',
+            models: patch.models ?? prev?.models ?? [],
+            status: patch.status ?? prev?.status ?? 'idle',
+            baseUrl: patch.baseUrl ?? prev?.baseUrl,
+            selectedModel: patch.selectedModel ?? prev?.selectedModel,
+            error: patch.error ?? prev?.error,
+            useProxy: patch.useProxy ?? prev?.useProxy,
+            lastChecked: patch.lastChecked ?? prev?.lastChecked,
+          };
+          return { keys: { ...s.keys, [providerId]: next } };
+        }),
 
       addAgent: (a) =>
         set((s) => ({
