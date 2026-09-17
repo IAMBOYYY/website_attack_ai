@@ -66,7 +66,14 @@ export const useStore = create<State>()(
         set((s) => ({
           keys: {
             ...s.keys,
-            [providerId]: { providerId, apiKey: '', models: [], status: 'idle', ...s.keys[providerId], ...patch },
+            [providerId]: {
+              apiKey: '',
+              models: [],
+              status: 'idle' as const,
+              ...s.keys[providerId],
+              ...patch,
+              providerId,
+            },
           },
         })),
 
@@ -98,8 +105,11 @@ export const useStore = create<State>()(
     {
       name: 'nexus-swarm',
       partialize: (s) => ({
-        keys: s.keys, agents: s.agents, targets: s.targets,
-        mission: s.mission, config: s.config,
+        keys: s.keys,
+        agents: s.agents,
+        targets: s.targets,
+        mission: s.mission,
+        config: s.config,
       }),
     }
   )
