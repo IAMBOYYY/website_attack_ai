@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html, body {
+  background: #050607;
+  color: #d7dee6;
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { scrollbar-width: thin; scrollbar-color: #1f262d transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: #1f262d; border-radius: 4px; }
+*::-webkit-scrollbar-thumb:hover { background: #2b333c; }
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(31, 38, 45, 0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 38, 45, 0.35) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.glow-acid { box-shadow: 0 0 0 1px rgba(125,255,155,0.25), 0 0 24px -6px rgba(125,255,155,0.35); }
+
+@keyframes blink { 0%,49% { opacity: 1 } 50%,100% { opacity: 0 } }
+.caret::after { content: '▋'; margin-left: 2px; animation: blink 1s step-end infinite; color: #7dff9b; }
+
+.md h1,.md h2,.md h3 { font-weight: 600; margin: 1em 0 .4em; color: #eaf1f8; }
+.md h1 { font-size: 1.15rem; } .md h2 { font-size: 1.05rem; } .md h3 { font-size: .98rem; }
+.md p { margin: .5em 0; line-height: 1.65; }
+.md ul,.md ol { margin: .5em 0 .5em 1.2em; }
+.md li { margin: .2em 0; }
+.md code { background: #10151a; border: 1px solid #1f262d; padding: 1px 5px; border-radius: 4px; font-size: .85em; font-family: ui-monospace, monospace; color: #7dff9b; }
+.md pre { background: #080b0e; border: 1px solid #1f262d; padding: 12px; border-radius: 6px; overflow: auto; margin: .6em 0; }
+.md pre code { background: none; border: none; padding: 0; color: #d7dee6; font-size: .82rem; line-height: 1.55; }
+.md a { color: #5fd4ff; text-decoration: underline; text-underline-offset: 2px; }
+.md blockquote { border-left: 2px solid #2b333c; padding-left: 12px; color: #8b96a3; margin: .6em 0; }
+.md table { border-collapse: collapse; margin: .6em 0; font-size: .85em; }
+.md th,.md td { border: 1px solid #1f262d; padding: 5px 9px; text-align: left; }
+.md th { background: #0d1116; }
+.md hr { border: none; border-top: 1px solid #1f262d; margin: 1em 0; }
